@@ -1,26 +1,145 @@
 @import "tailwindcss";
 
+/* Cylend Brand Colors - Matching Main App */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --background: 220 40% 2%;
+  /* Dark navy - hsl(220, 40%, 2%) */
+  --foreground: 210 20% 90%;
+  /* Light gray */
+
+  /* Primary - Cylend Cyan */
+  --primary: 188 95% 48%;
+  /* Cyan rgb(6,208,239) */
+  --primary-foreground: 220 40% 2%;
+
+  /* Muted/Secondary */
+  --muted: 220 20% 12%;
+  --muted-foreground: 215 15% 60%;
+
+  /* Borders */
+  --border: 220 20% 15%;
+
+  /* Accent - Same as primary for brand consistency */
+  --accent: 220 20% 12%;
+  --accent-foreground: 188 95% 48%;
+  /* Cyan text on dark */
+
+  /* Cards */
+  --card: 220 30% 6%;
+  --card-foreground: 210 20% 90%;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: rgb(5 9 13);
+  /* Very dark navy */
+  --color-foreground: rgb(220 226 232);
+  /* Light text */
+
+  /* Cylend Cyan - Primary Brand Color */
+  --color-primary: rgb(6 208 239);
+  /* Exact logo color */
+  --color-primary-foreground: rgb(5 9 13);
+
+  --color-muted: rgb(30 37 46);
+  --color-muted-foreground: rgb(136 152 170);
+
+  --color-border: rgb(38 47 58);
+
+  /* Accent highlighting */
+  --color-accent: rgb(30 37 46);
+  /* Dark accent bg */
+  --color-accent-foreground: rgb(6 208 239);
+  /* Cyan text */
+
+  --color-card: rgb(15 20 26);
+  --color-card-foreground: rgb(220 226 232);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 220 40% 2%;
+    --foreground: 210 20% 90%;
+    --muted: 220 20% 12%;
+    --muted-foreground: 215 15% 60%;
+    --border: 220 20% 15%;
+    --accent: 220 20% 12%;
+    --accent-foreground: 188 95% 48%;
+    --primary: 188 95% 48%;
+    --primary-foreground: 220 40% 2%;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve code block readability */
+pre {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875em;
+}
+
+/* Better link styles */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Improve heading spacing */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Better scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
 }
