@@ -4,15 +4,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { NavItem } from "@/config/docs";
+import { ChevronRight } from "lucide-react";
 
 export function DocsSidebarNav({ items }: { items: NavItem[] }) {
     const pathname = usePathname();
 
     return items.length ? (
-        <div className="w-full">
+        <div className="w-full space-y-6">
             {items.map((item, index) => (
-                <div key={index} className={cn("pb-4")}>
-                    <h4 className="mb-2 rounded-md px-2 py-1 text-sm font-semibold text-foreground">
+                <div key={index} className="pb-2">
+                    <h4 className="mb-3 rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground/80 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary/50"></span>
                         {item.title}
                     </h4>
                     {item.items ? (
@@ -34,38 +36,53 @@ export function DocsSidebarNavItems({
     pathname,
 }: DocsSidebarNavItemsProps) {
     return items?.length ? (
-        <div className="grid grid-flow-row auto-rows-max text-sm">
+        <div className="grid grid-flow-row auto-rows-max text-sm gap-0.5">
             {items.map((item, index) =>
                 item.href && !item.disabled ? (
                     <Link
                         key={index}
                         href={item.href}
                         className={cn(
-                            "group flex w-full items-center rounded-md border border-transparent px-2 py-1.5 hover:bg-accent hover:text-accent-foreground transition-colors",
+                            "group relative flex w-full items-center gap-2 rounded-lg border border-transparent px-3 py-2 transition-all duration-200",
                             pathname === item.href
-                                ? "bg-accent text-accent-foreground font-medium"
-                                : "text-muted-foreground"
+                                ? "bg-gradient-to-r from-primary/10 to-primary/5 text-primary font-medium border-primary/20"
+                                : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                         )}
                         target={item.external ? "_blank" : undefined}
                         rel={item.external ? "noreferrer" : undefined}
                     >
+                        {/* Active indicator */}
+                        <span className={cn(
+                            "absolute left-0 top-1/2 -translate-y-1/2 w-0.5 rounded-full transition-all duration-200",
+                            pathname === item.href
+                                ? "h-4 bg-gradient-to-b from-primary to-primary/50"
+                                : "h-0 group-hover:h-3 bg-primary/30"
+                        )}></span>
+
                         {item.title}
+
                         {item.label && (
-                            <span className="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000] no-underline group-hover:no-underline">
+                            <span className="ml-auto rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
                                 {item.label}
                             </span>
                         )}
+
+                        {/* Hover arrow */}
+                        <ChevronRight className={cn(
+                            "ml-auto h-3.5 w-3.5 transition-all duration-200",
+                            pathname === item.href
+                                ? "opacity-100 text-primary"
+                                : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
+                        )} />
                     </Link>
                 ) : (
                     <span
                         key={index}
-                        className={cn(
-                            "flex w-full cursor-not-allowed items-center rounded-md px-2 py-1.5 text-muted-foreground opacity-60"
-                        )}
+                        className="flex w-full cursor-not-allowed items-center rounded-lg px-3 py-2 text-muted-foreground/50"
                     >
                         {item.title}
                         {item.label && (
-                            <span className="ml-2 rounded-md bg-muted px-1.5 py-0.5 text-xs leading-none text-muted-foreground no-underline group-hover:no-underline">
+                            <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground/50">
                                 {item.label}
                             </span>
                         )}
@@ -75,4 +92,3 @@ export function DocsSidebarNavItems({
         </div>
     ) : null;
 }
-

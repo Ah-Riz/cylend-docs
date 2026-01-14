@@ -20,7 +20,7 @@ export const docsConfig: NavConfig = {
         },
         {
             title: "GitHub",
-            href: "https://github.com/yourusername/cylend",
+            href: "https://github.com/Ah-Riz/cylend_fe",
             external: true,
         },
     ],

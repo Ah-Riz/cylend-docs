@@ -1,12 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { Terminal, CheckCircle2, ArrowRight } from "lucide-react";
+import { Terminal, ArrowRight, CheckCircle2, Play } from "lucide-react";
 import { Callout } from "@/components/callout";
 
 export const metadata: Metadata = {
     title: "Quick Start",
-    description: "Get up and running with Cylend in 5 minutes",
+    description: "Get Cylend running and make your first deposit",
 };
 
 export default function QuickStartPage() {
@@ -15,324 +14,250 @@ export default function QuickStartPage() {
             <div className="space-y-2">
                 <h1 className="scroll-m-20 text-4xl font-bold tracking-tight">Quick Start</h1>
                 <p className="text-lg text-muted-foreground">
-                    Get up and running with Cylend in 5 minutes. This guide walks you through starting all services and making your first deposit.
+                    Run all Cylend services and complete your first lending operation
                 </p>
             </div>
 
             <div className="mt-12 space-y-10">
                 <Callout type="note">
                     <p>
-                        Before starting, make sure you've completed the <Link href="/getting-started/installation" className="text-primary hover:underline">Installation</Link> and <Link href="/getting-started/configuration" className="text-primary hover:underline">Configuration</Link> steps.
+                        Make sure you've completed the <Link href="/getting-started/installation" className="text-primary hover:underline">Installation</Link> and{" "}
+                        <Link href="/getting-started/configuration" className="text-primary hover:underline">Configuration</Link> steps before proceeding.
                     </p>
                 </Callout>
 
                 <section>
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Step 1: Start Ponder Indexer
+                        Start All Services
                     </h2>
 
                     <p className="mt-6 leading-7">
-                        Open your first terminal and start the Ponder indexer:
+                        Cylend requires three services to run. Open three separate terminal windows:
                     </p>
 
-                    <div className="mt-4 rounded-lg bg-muted p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                            <Terminal className="h-4 w-4" />
-                            <span className="text-sm font-mono">Terminal 1</span>
+                    <div className="mt-6 space-y-6">
+                        <div className="rounded-lg border p-6">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-sm font-bold">1</div>
+                                <h3 className="text-lg font-semibold">Terminal 1: Ponder Indexer</h3>
+                            </div>
+                            <p className="text-sm text-muted-foreground mb-3">
+                                Start the event indexer first. It provides the GraphQL API that other services depend on.
+                            </p>
+                            <div className="rounded-lg bg-muted p-4">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Terminal className="h-4 w-4" />
+                                    <span className="text-sm font-mono">Terminal</span>
+                                </div>
+                                <pre className="overflow-x-auto text-sm"><code>{`cd cylend-indexer
+npm run dev`}</code></pre>
+                            </div>
+                            <p className="mt-3 text-sm text-muted-foreground">
+                                Wait until you see: <code className="bg-muted px-1 py-0.5 rounded">GraphQL API running at http://localhost:42069/graphql</code>
+                            </p>
                         </div>
-                        <pre className="overflow-x-auto"><code className="text-sm">cd cylend-indexer
-                            npm run dev</code></pre>
-                    </div>
 
-                    <p className="mt-4 leading-7">
-                        You should see output indicating that Ponder is:
+                        <div className="rounded-lg border p-6">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-500 text-white text-sm font-bold">2</div>
+                                <h3 className="text-lg font-semibold">Terminal 2: Backend Service</h3>
+                            </div>
+                            <p className="text-sm text-muted-foreground mb-3">
+                                Start the action processor. This automatically processes pending encrypted actions.
+                            </p>
+                            <div className="rounded-lg bg-muted p-4">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Terminal className="h-4 w-4" />
+                                    <span className="text-sm font-mono">Terminal</span>
+                                </div>
+                                <pre className="overflow-x-auto text-sm"><code>{`cd cylend-service
+npm run dev`}</code></pre>
+                            </div>
+                            <p className="mt-3 text-sm text-muted-foreground">
+                                You should see: <code className="bg-muted px-1 py-0.5 rounded">✓ Monitoring for actions...</code>
+                            </p>
+                        </div>
+
+                        <div className="rounded-lg border p-6">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 text-white text-sm font-bold">3</div>
+                                <h3 className="text-lg font-semibold">Terminal 3: Frontend</h3>
+                            </div>
+                            <p className="text-sm text-muted-foreground mb-3">
+                                Start the Next.js frontend application.
+                            </p>
+                            <div className="rounded-lg bg-muted p-4">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <Terminal className="h-4 w-4" />
+                                    <span className="text-sm font-mono">Terminal</span>
+                                </div>
+                                <pre className="overflow-x-auto text-sm"><code>{`npm run dev`}</code></pre>
+                            </div>
+                            <p className="mt-3 text-sm text-muted-foreground">
+                                Open <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">http://localhost:3000</a> in your browser.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+                        Your First Lending Operation
+                    </h2>
+
+                    <p className="mt-6 leading-7">
+                        Follow these steps to complete a basic supply and borrow workflow:
                     </p>
 
-                    <ul className="mt-4 space-y-2">
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Connecting to Mantle Sepolia and Sapphire Testnet RPCs</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Indexing events from smart contracts</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Starting GraphQL server at <code>http://localhost:42069/graphql</code></span>
-                        </li>
-                    </ul>
+                    <div className="mt-6 space-y-4">
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold flex-shrink-0">1</div>
+                            <div className="flex-1">
+                                <h3 className="font-semibold">Connect Your Wallet</h3>
+                                <p className="text-sm text-muted-foreground mt-1">
+                                    Click "Connect Wallet" and select your preferred wallet. Make sure you're on Mantle Sepolia network.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold flex-shrink-0">2</div>
+                            <div className="flex-1">
+                                <h3 className="font-semibold">Get Testnet Tokens</h3>
+                                <p className="text-sm text-muted-foreground mt-1">
+                                    Visit the faucets to get testnet tokens:
+                                </p>
+                                <ul className="mt-2 space-y-1 text-sm">
+                                    <li>• <a href="https://faucet.sepolia.mantle.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mantle Sepolia Faucet</a> for MNT (gas)</li>
+                                    <li>• <a href="https://faucet.testnet.oasis.io/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sapphire Faucet</a> for ROSE (gas on Sapphire)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold flex-shrink-0">3</div>
+                            <div className="flex-1">
+                                <h3 className="font-semibold">Create a Deposit</h3>
+                                <p className="text-sm text-muted-foreground mt-1">
+                                    Navigate to the <strong>Deposit</strong> page. Enter an amount and create a deposit bucket. This locks your funds in the Ingress contract.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold flex-shrink-0">4</div>
+                            <div className="flex-1">
+                                <h3 className="font-semibold">Supply Collateral</h3>
+                                <p className="text-sm text-muted-foreground mt-1">
+                                    Go to the <strong>Allocate</strong> page. Select your deposit and supply amount. This action is encrypted and sent to Sapphire.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold flex-shrink-0">5</div>
+                            <div className="flex-1">
+                                <h3 className="font-semibold">Wait for Processing</h3>
+                                <p className="text-sm text-muted-foreground mt-1">
+                                    The backend service automatically processes your action. Watch Terminal 2 for processing logs.
+                                    Your position will update on the Dashboard once complete.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold flex-shrink-0">6</div>
+                            <div className="flex-1">
+                                <h3 className="font-semibold">Borrow Against Collateral</h3>
+                                <p className="text-sm text-muted-foreground mt-1">
+                                    Navigate to <strong>Borrow</strong>. Enter a borrow amount (within your health factor limits).
+                                    Once processed, funds will be released to your wallet!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                     <Callout type="tip">
                         <p>
-                            Visit <code>http://localhost:42069/graphql</code> in your browser to access the GraphQL playground
-                            and explore the available queries and subscriptions.
+                            Watch the <strong>Settlement Records</strong> page to track your action status in real-time.
+                            Actions progress from "Pending" → "Processing" → "Completed".
                         </p>
                     </Callout>
                 </section>
 
                 <section>
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Step 2: Start Backend Service (Optional)
+                        Verify Everything Works
                     </h2>
 
-                    <p className="mt-6 leading-7">
-                        Open your second terminal and start the backend service (optional for testing, but required for production):
-                    </p>
-
-                    <div className="mt-4 rounded-lg bg-muted p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                            <Terminal className="h-4 w-4" />
-                            <span className="text-sm font-mono">Terminal 2</span>
+                    <div className="mt-6 space-y-3">
+                        <div className="flex items-center gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-green-500" />
+                            <span>Ponder GraphQL playground accessible at <code>localhost:42069/graphql</code></span>
                         </div>
-                        <pre className="overflow-x-auto"><code className="text-sm">cd cylend-service
-                            npm run dev</code></pre>
+                        <div className="flex items-center gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-green-500" />
+                            <span>Backend service shows "Monitoring for actions..." message</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-green-500" />
+                            <span>Frontend loads and wallet connection works</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-green-500" />
+                            <span>Dashboard displays pool data and your positions</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-green-500" />
+                            <span>Deposit creation transaction succeeds</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
+                        Troubleshooting
+                    </h2>
+
+                    <div className="mt-6 space-y-4">
+                        <div className="rounded-lg border p-4">
+                            <h3 className="font-semibold text-sm">Ponder won't start</h3>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                Check RPC URLs in <code>.env</code>. Ensure they're accessible with <code>curl https://rpc.sepolia.mantle.xyz</code>
+                            </p>
+                        </div>
+
+                        <div className="rounded-lg border p-4">
+                            <h3 className="font-semibold text-sm">Frontend shows "Failed to fetch" errors</h3>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                Make sure Ponder is running first. Check <code>NEXT_PUBLIC_PONDER_API_URL</code> matches Ponder's address.
+                            </p>
+                        </div>
+
+                        <div className="rounded-lg border p-4">
+                            <h3 className="font-semibold text-sm">Actions stuck in "Pending"</h3>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                Verify the backend service is running and <code>OWNER_PRIVATE_KEY</code> has permissions to call processAction.
+                            </p>
+                        </div>
+
+                        <div className="rounded-lg border p-4">
+                            <h3 className="font-semibold text-sm">Transaction fails with "insufficient funds"</h3>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                Get testnet tokens from faucets. You need MNT for Mantle gas and ROSE for Sapphire gas.
+                            </p>
+                        </div>
                     </div>
 
-                    <p className="mt-4 leading-7">
-                        The service will:
+                    <p className="mt-6 text-sm text-muted-foreground">
+                        For more issues, see the <Link href="/guides/troubleshooting" className="text-primary hover:underline">Troubleshooting Guide</Link>.
                     </p>
-
-                    <ul className="mt-4 space-y-2">
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Monitor for new encrypted actions on Sapphire</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Automatically call <code>processAction()</code> when actions are submitted</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Update token prices from ROFL Oracle when needed</span>
-                        </li>
-                    </ul>
-
-                    <Callout type="caution">
-                        <p>
-                            The backend service requires the <code>OWNER_PRIVATE_KEY</code> environment variable.
-                            Without it, actions won't be processed automatically and will remain pending.
-                        </p>
-                    </Callout>
-                </section>
-
-                <section>
-                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Step 3: Start Frontend
-                    </h2>
-
-                    <p className="mt-6 leading-7">
-                        Open your third terminal and start the Next.js frontend:
-                    </p>
-
-                    <div className="mt-4 rounded-lg bg-muted p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                            <Terminal className="h-4 w-4" />
-                            <span className="text-sm font-mono">Terminal 3</span>
-                        </div>
-                        <pre className="overflow-x-auto"><code className="text-sm">npm run dev</code></pre>
-                    </div>
-
-                    <p className="mt-4 leading-7">
-                        Open <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">http://localhost:3000</a> in your browser.
-                    </p>
-                </section>
-
-                <section>
-                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Step 4: Connect Your Wallet
-                    </h2>
-
-                    <p className="mt-6 leading-7">
-                        On the frontend:
-                    </p>
-
-                    <ol className="mt-4 space-y-3">
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">1</div>
-                            <span>Click the "Connect Wallet" button</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">2</div>
-                            <span>Select your wallet (MetaMask, Rainbow, WalletConnect, etc.)</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">3</div>
-                            <span>Approve the connection in your wallet</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">4</div>
-                            <span>Switch to <strong>Mantle Sepolia</strong> network if prompted</span>
-                        </li>
-                    </ol>
-
-                    <Callout type="note">
-                        <p>
-                            Make sure you have testnet MNT in your wallet for gas fees. Get it from the <a href="https://faucet.sepolia.mantle.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mantle Sepolia Faucet</a>.
-                        </p>
-                    </Callout>
-                </section>
-
-                <section>
-                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Step 5: Create Your First Deposit
-                    </h2>
-
-                    <p className="mt-6 leading-7">
-                        Navigate to the Deposit page and create your first deposit:
-                    </p>
-
-                    <ol className="mt-4 space-y-3">
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">1</div>
-                            <span>Go to the <strong>Deposit</strong> page</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">2</div>
-                            <span>Select token type (Native MNT or ERC20)</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">3</div>
-                            <span>Enter the amount (e.g., 0.1 MNT for testing)</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">4</div>
-                            <span>Click "Create Deposit" and confirm the transaction</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">5</div>
-                            <span>Wait for transaction confirmation</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">6</div>
-                            <span>Note your <code>depositId</code> from the success message</span>
-                        </li>
-                    </ol>
-
-                    <Callout type="tip">
-                        <p>
-                            The <code>depositId</code> is your "bucket" that holds funds. You can use it for multiple actions
-                            (supply, borrow, repay, withdraw) until it's fully spent.
-                        </p>
-                    </Callout>
-                </section>
-
-                <section>
-                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Step 6: Supply (Allocate) Capital
-                    </h2>
-
-                    <p className="mt-6 leading-7">
-                        Now let's supply capital to the lending pool:
-                    </p>
-
-                    <ol className="mt-4 space-y-3">
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">1</div>
-                            <span>Navigate to the <strong>Allocate</strong> (Supply) page</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">2</div>
-                            <span>Select the deposit you created (or create a new one)</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">3</div>
-                            <span>Enter the amount to supply (must be ≤ remaining deposit amount)</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">4</div>
-                            <span>The frontend encrypts your action payload client-side</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">5</div>
-                            <span>Submit the action and confirm the transaction</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">6</div>
-                            <span>Monitor the action status: Pending → Processing → Processed</span>
-                        </li>
-                    </ol>
-
-                    <Callout type="note">
-                        <p>
-                            The action goes through multiple steps:
-                        </p>
-                        <ul className="mt-2 space-y-1">
-                            <li>1. Submitted to Mantle (Ingress contract)</li>
-                            <li>2. Relayed to Sapphire via Hyperlane</li>
-                            <li>3. Stored encrypted in LendingCore</li>
-                            <li>4. Processed by backend service</li>
-                            <li>5. Position updated on Sapphire</li>
-                        </ul>
-                    </Callout>
-                </section>
-
-                <section>
-                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Step 7: Check Your Position
-                    </h2>
-
-                    <p className="mt-6 leading-7">
-                        After your supply action is processed, you can check your position:
-                    </p>
-
-                    <ul className="mt-4 space-y-2">
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>View the <strong>Dashboard</strong> to see your total allocated capital</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Check the <strong>Pools</strong> page to see liquidity metrics</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Visit the <strong>Records</strong> page to view your action history</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Query the Ponder GraphQL API for detailed position data</span>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
-                        Congratulations! 🎉
-                    </h2>
-
-                    <p className="mt-6 leading-7">
-                        You've successfully:
-                    </p>
-
-                    <ul className="mt-4 space-y-2">
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Set up all Cylend components</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Created a deposit bucket</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Supplied capital to the lending pool</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span>Experienced cross-chain privacy-preserving lending!</span>
-                        </li>
-                    </ul>
                 </section>
 
                 <section>
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
                         Next Steps
                     </h2>
-
-                    <p className="mt-6 leading-7">
-                        Continue exploring Cylend:
-                    </p>
 
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
                         <Link
@@ -341,7 +266,7 @@ export default function QuickStartPage() {
                         >
                             <div>
                                 <h3 className="font-semibold">User Flows</h3>
-                                <p className="mt-1 text-sm text-muted-foreground">Learn borrow, repay, and withdraw flows</p>
+                                <p className="mt-1 text-sm text-muted-foreground">Learn all lending operations</p>
                             </div>
                             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Link>
@@ -352,29 +277,29 @@ export default function QuickStartPage() {
                         >
                             <div>
                                 <h3 className="font-semibold">Architecture</h3>
-                                <p className="mt-1 text-sm text-muted-foreground">Understand how it all works</p>
+                                <p className="mt-1 text-sm text-muted-foreground">Understand system design</p>
                             </div>
                             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Link>
 
                         <Link
-                            href="/guides/troubleshooting"
+                            href="/smart-contracts"
                             className="group flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-muted"
                         >
                             <div>
-                                <h3 className="font-semibold">Troubleshooting</h3>
-                                <p className="mt-1 text-sm text-muted-foreground">Common issues and solutions</p>
+                                <h3 className="font-semibold">Smart Contracts</h3>
+                                <p className="mt-1 text-sm text-muted-foreground">Contract documentation</p>
                             </div>
                             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Link>
 
                         <Link
-                            href="/api-reference"
+                            href="/indexer"
                             className="group flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-muted"
                         >
                             <div>
-                                <h3 className="font-semibold">API Reference</h3>
-                                <p className="mt-1 text-sm text-muted-foreground">Complete API documentation</p>
+                                <h3 className="font-semibold">Ponder Indexer</h3>
+                                <p className="mt-1 text-sm text-muted-foreground">Event indexing deep-dive</p>
                             </div>
                             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Link>
