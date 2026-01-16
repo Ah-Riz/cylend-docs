@@ -50,6 +50,13 @@ export default function GettingStartedPage() {
                             </li>
                         </ul>
                     </div>
+
+                    <Callout type="important">
+                        <p>
+                            <strong>MVP Notice:</strong> This MVP currently only supports <strong>USDC</strong> token.
+                            Support for additional tokens will be added in future releases.
+                        </p>
+                    </Callout>
                 </section>
 
                 <section>
@@ -118,7 +125,7 @@ export default function GettingStartedPage() {
                                 <li>• Web3 wallet (MetaMask, Rainbow, WalletConnect compatible)</li>
                                 <li>• Mantle Sepolia testnet MNT (for gas fees)</li>
                                 <li>• Sapphire Testnet ROSE (for gas fees)</li>
-                                <li>• Test tokens: USDC, USDT, WMNT (optional, for testing)</li>
+                                <li>• <strong>USDC tokens (required for MVP)</strong></li>
                             </ul>
                         </div>
 
@@ -127,8 +134,9 @@ export default function GettingStartedPage() {
                                 Get testnet tokens from faucets:
                             </p>
                             <ul className="mt-2 space-y-1">
-                                <li>• <a href="https://faucet.sepolia.mantle.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mantle Sepolia Faucet</a></li>
-                                <li>• <a href="https://faucet.testnet.oasis.io/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sapphire Testnet Faucet</a></li>
+                                <li>• <a href="https://faucet.sepolia.mantle.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mantle Sepolia Faucet</a> - Get MNT for gas</li>
+                                <li>• <a href="https://faucet.testnet.oasis.io/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sapphire Testnet Faucet</a> - Get ROSE for gas</li>
+                                <li>• <a href="https://testnet.agni.finance/swap" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Agni Finance Swap</a> - Swap MNT to USDC</li>
                             </ul>
                         </Callout>
                     </div>

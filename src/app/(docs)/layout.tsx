@@ -66,52 +66,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
                 {/* Main Content */}
                 <main className="relative py-8 lg:py-10">
                     <div className="mx-auto w-full min-w-0 px-4 lg:px-0">
-                        <article className="prose prose-slate dark:prose-invert max-w-none 
-                            prose-headings:scroll-mt-24 
-                            prose-headings:font-bold 
-                            prose-headings:tracking-tight
-                            prose-h1:text-4xl 
-                            prose-h1:font-extrabold
-                            prose-h1:mb-4
-                            prose-h2:text-2xl 
-                            prose-h2:mt-12 
-                            prose-h2:mb-6
-                            prose-h2:pb-2
-                            prose-h2:border-b
-                            prose-h2:border-border/50
-                            prose-h3:text-xl 
-                            prose-h3:mt-8
-                            prose-h3:mb-4
-                            prose-p:leading-7 
-                            prose-p:text-muted-foreground
-                            prose-pre:bg-slate-900 
-                            prose-pre:text-slate-50 
-                            prose-pre:border
-                            prose-pre:border-border/50
-                            prose-pre:shadow-lg
-                            prose-code:text-sm 
-                            prose-code:font-medium
-                            prose-a:text-primary 
-                            prose-a:no-underline 
-                            prose-a:font-medium
-                            hover:prose-a:underline 
-                            prose-img:rounded-xl 
-                            prose-img:border
-                            prose-img:border-border/50
-                            prose-img:shadow-lg
-                            prose-strong:text-foreground
-                            prose-strong:font-semibold
-                            prose-li:text-muted-foreground
-                            prose-ul:my-4
-                            prose-ol:my-4
-                            prose-li:my-1
-                            prose-hr:border-border/50
-                            prose-blockquote:border-primary/50
-                            prose-blockquote:bg-primary/5
-                            prose-blockquote:rounded-r-lg
-                            prose-blockquote:py-1
-                            prose-blockquote:not-italic
-                            prose-blockquote:text-muted-foreground">
+                        <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-24 prose-headings:font-bold prose-headings:tracking-tight prose-h1:text-4xl prose-h1:font-extrabold prose-h1:mb-4 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-2 prose-h2:border-b prose-h2:border-border/50 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-p:leading-7 prose-p:text-muted-foreground prose-pre:bg-slate-900 prose-pre:text-slate-50 prose-pre:border prose-pre:border-border/50 prose-pre:shadow-lg prose-code:text-sm prose-code:font-medium prose-a:text-primary prose-a:no-underline prose-a:font-medium hover:prose-a:underline prose-img:rounded-xl prose-img:border prose-img:border-border/50 prose-img:shadow-lg prose-strong:text-foreground prose-strong:font-semibold prose-li:text-muted-foreground prose-ul:my-4 prose-ol:my-4 prose-li:my-1 prose-hr:border-border/50 prose-blockquote:border-primary/50 prose-blockquote:bg-primary/5 prose-blockquote:rounded-r-lg prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:text-muted-foreground">
                             {children}
                         </article>
                     </div>

@@ -19,6 +19,9 @@ export default function Home() {
         <p className="max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed mb-10">
           Privacy-preserving credit infrastructure built on Mantle and Sapphire networks.
           Learn how to build, deploy, and integrate with Cylend.
+          <span className="block mt-3 text-base text-muted-foreground/80">
+            Test the live app at <a href="https://www.cylend.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cylend.xyz</a> — requires testnet USDC.
+          </span>
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -208,6 +211,24 @@ export default function Home() {
             href="https://github.com"
           />
         </div>
+      </section>
+
+      {/* Get USDC CTA */}
+      <section className="mx-auto max-w-5xl pb-16 md:pb-24 px-4">
+        <a
+          href="https://testnet.agni.finance/swap?chain=mantleTestnet&outputCurrency=0xAcab8129E2cE587fD203FD770ec9ECAFA2C88080"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative flex items-center justify-between w-full rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 p-6 md:p-8 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20"
+        >
+          <div className="flex-1">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">Need Testnet USDC?</h3>
+            <p className="text-sm md:text-base text-muted-foreground">
+              Swap your MNT to USDC on Agni Finance to start testing Cylend
+            </p>
+          </div>
+          <ArrowRight className="h-6 w-6 md:h-8 md:w-8 text-primary transition-transform group-hover:translate-x-2" />
+        </a>
       </section>
     </div>
   );

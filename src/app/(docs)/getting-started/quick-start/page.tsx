@@ -26,6 +26,13 @@ export default function QuickStartPage() {
                     </p>
                 </Callout>
 
+                <Callout type="important">
+                    <p>
+                        <strong>MVP Notice:</strong> This MVP currently only supports <strong>USDC</strong> token.
+                        You'll need USDC on Mantle Sepolia to test the lending functionality.
+                    </p>
+                </Callout>
+
                 <section>
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight">
                         Start All Services
@@ -130,6 +137,7 @@ npm run dev`}</code></pre>
                                 <ul className="mt-2 space-y-1 text-sm">
                                     <li>• <a href="https://faucet.sepolia.mantle.xyz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mantle Sepolia Faucet</a> for MNT (gas)</li>
                                     <li>• <a href="https://faucet.testnet.oasis.io/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sapphire Faucet</a> for ROSE (gas on Sapphire)</li>
+                                    <li>• <a href="https://testnet.agni.finance/swap" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Agni Finance</a> to swap MNT → USDC (required for MVP)</li>
                                 </ul>
                             </div>
                         </div>
